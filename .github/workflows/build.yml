@@ -1,0 +1,24 @@
+name: 'test'
+
+# このワークフローが実行されるタイミングの定義
+on:
+  # push時に実行
+  push:
+    # 対象ブランチ
+    branches:
+      - master
+
+# GitHub Actionsで行うジョブの定義
+jobs:
+  create-new-tag:
+    # Ubuntu環境で実行
+    runs-on: ubuntu-latest
+
+    # 実際のジョブ内容を記載
+    steps:
+      - name: 変数格納
+        id: step1
+        run: echo "test=hello" >> "$GITHUB_OUTPUT"
+
+      - name: 変数出力
+        run: echo ${{steps.step1.outputs.test}}
